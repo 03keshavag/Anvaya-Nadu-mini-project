@@ -1,0 +1,22 @@
+# Chrome debug profiles & caches
+.chrome*
+.chrome_debug_profile/
+.chrome_anvaya_debug/
+.chrome_anvaya_snap/
+.chrome_anvaya_v2_debug/
+.chrome_anvaya_refine_debug/
+
+# Python & Node artifacts
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+node_modules/
+.env
+
+# System & OS artifacts
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log

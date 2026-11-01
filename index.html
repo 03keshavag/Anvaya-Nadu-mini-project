@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anvaya Nādu — Living Heritage & 3D Architectural Exploration</title>
+
+  <!-- Google Fonts: DM Serif Display, Plus Jakarta Sans & Tiro Kannada -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Tiro+Kannada&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="./style.css">
+
+  <!-- Three.js Import Map -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "./libs/three.module.js",
+        "three/addons/": "./libs/"
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <!-- =========================================================================
+       1. GLOBAL NAVIGATION HEADER
+       ========================================================================= -->
+  <header id="site-header" class="site-header hero-transparent">
+    <div class="header-inner">
+      <a href="#/" class="brand-wrap" title="Anvaya Nādu — Home">
+        <div class="brand-monogram">AN</div>
+        <div class="brand-names">
+          <span class="brand-title">Anvaya Nādu</span>
+          <span class="brand-subtitle">ಅನ್ವಯ ನಾಡು • Karnataka Heritage</span>
+        </div>
+      </a>
+
+      <!-- Primary Application Navigation -->
+      <nav class="main-nav" aria-label="Main Navigation">
+        <a href="#/" class="nav-item active" data-nav="home">Home</a>
+        <a href="#/explore" class="nav-item" data-nav="explore">Explore Karnataka</a>
+        <a href="#/3d-world" class="nav-item" data-nav="3d-world">Virtual 3D</a>
+        <!-- Restrained Integration Points for Future Teammate Modules -->
+        <a href="#/modules/stories" class="nav-item" data-nav="modules-stories">Heritage Stories</a>
+        <a href="#/modules/roadmap" class="nav-item" data-nav="modules-roadmap">Travel Roadmap</a>
+        <a href="#/modules/budget" class="nav-item" data-nav="modules-budget">Budget Planner</a>
+      </nav>
+
+      <!-- Action Button -->
+      <div class="header-actions">
+        <a href="#/3d-world" class="btn btn-sm btn-outline">Enter 3D World &rarr;</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       2. MAIN APPLICATION CONTENT (DYNAMIC ROUTING VIEWS)
+       ========================================================================= -->
+  <main id="app-root">
+
+    <!-- VIEW 1: HOMEPAGE (#/) -->
+    <div id="view-home" class="page-view">
+
+      <!-- SECTION 1: CINEMATIC HERO (WITH BACKGROUND VIDEO) -->
+      <section class="hero-video-section">
+        <!-- Background Video (Autoplay, Muted, Loop, Playsinline) -->
+        <video id="hero-video" class="hero-video-bg" autoplay muted loop playsinline poster="./hero_poster.jpg">
+          <source src="./hero_background.mp4" type="video/mp4">
+        </video>
+        <div class="hero-video-overlay"></div>
+
+        <div class="container">
+          <div class="hero-content">
+            <span class="hero-eyebrow">KARNATAKA • HERITAGE • ARCHITECTURE</span>
+            <h1 class="hero-headline">Where Karnataka’s Past Comes Alive.</h1>
+            <p class="hero-paragraph">
+              Discover the temples, monuments, civilizations, and architectural wonders that tell the story of Karnataka. Explore remarkable heritage sites and experience their architecture through interactive 3D visualizations.
+            </p>
+            <div class="hero-cta-group">
+              <a href="#/explore" class="btn btn-terracotta">Explore Heritage &rarr;</a>
+              <a href="#/3d-world" class="btn btn-outline">Enter the 3D World &rarr;</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-scroll-cue">
+          <span>Scroll to Discover</span>
+          <div class="scroll-line"></div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: PURPOSE OF ANVAYA NĀDU -->
+      <section class="purpose-section section-spacing">
+        <div class="container">
+          <div class="purpose-grid">
+            <div class="purpose-image-wrap">
+              <img src="./dest_hampi.jpg" alt="Sacred Stone Architecture in Karnataka" class="purpose-image">
+              <div class="purpose-image-caption">
+                Granite monuments and sacred landscapes of the Tungabhadra basin, Hampi.
+              </div>
+            </div>
+
+            <div class="purpose-content">
+              <span class="section-label">A LIVING DIGITAL RECORD</span>
+              <h2 class="section-headline">A Living Record of Karnataka’s Heritage</h2>
+              <p class="purpose-text">
+                Karnataka is home to millennia of architectural evolution—from the early rock-cut caves of Vatapi to the delicate soapstone micro-sculptures of the Hoysalas and the colossal granite boulder shrines of Vijayanagara. Important monuments and architectural traditions deserve an engaging, accessible digital archive.
+              </p>
+
+              <div class="purpose-pillars">
+                <div class="pillar-item">
+                  <span class="pillar-number">01</span>
+                  <div class="pillar-body">
+                    <h4>Architectural Preservation</h4>
+                    <p>Capturing the geometry, plinths, and carving traditions of historical monuments in interactive 3D space.</p>
+                  </div>
+                </div>
+
+                <div class="pillar-item">
+                  <span class="pillar-number">02</span>
+                  <div class="pillar-body">
+                    <h4>Geographic & Historical Discovery</h4>
+                    <p>Organizing heritage by authentic region, ruling dynasty, and architectural stone medium.</p>
+                  </div>
+                </div>
+
+                <div class="pillar-item">
+                  <span class="pillar-number">03</span>
+                  <div class="pillar-body">
+                    <h4>Cultural Grounding</h4>
+                    <p>Honoring verified historical contexts and indigenous terminology without fabricated claims.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: EXPLORE KARNATAKA'S HERITAGE (CURATED PREVIEW) -->
+      <section class="destinations-section section-spacing">
+        <div class="container">
+          <div class="section-header-row">
+            <div class="section-header-copy">
+              <span class="section-label">CURATED DESTINATIONS</span>
+              <h2 class="section-headline">Explore Karnataka’s Heritage Corridors</h2>
+              <p class="section-subtitle">
+                A structured journey across prominent historic regions, dynasties, and sacred architectural ensembles.
+              </p>
+            </div>
+            <a href="#/explore" class="btn btn-stone">View All Destinations &rarr;</a>
+          </div>
+
+          <!-- Varied Editorial Grid -->
+          <div class="editorial-destinations-grid">
+            <!-- Featured Destination: Hampi -->
+            <article class="dest-card dest-card-featured">
+              <div class="dest-card-media">
+                <img src="./dest_hampi.jpg" alt="Hampi Heritage" class="dest-card-img">
+                <div class="dest-card-overlay-badge">
+                  <span class="tag-pill tag-terracotta">UNESCO WORLD HERITAGE • 2 3D MODELS</span>
+                </div>
+              </div>
+              <div class="dest-card-body">
+                <span class="dest-card-tradition">Vijayanagara Empire • 14th–16th C. CE</span>
+                <h3 class="dest-card-title">Hampi <span class="dest-card-kannada">ಹಂಪಿ</span></h3>
+                <p class="dest-card-desc">
+                  The fabled imperial capital along the Tungabhadra River, renowned for the Vittala Temple's Stone Chariot, the colossal Lakshmi Narasimha monolith, boulder-strewn hills, and royal ceremonial structures.
+                </p>
+                <div class="dest-card-footer">
+                  <span>Vijayanagara District • Granite Monoliths</span>
+                  <a href="#/3d-world/hampi" class="btn btn-sm btn-terracotta">Explore Hampi &rarr;</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Supporting Destination: Belur -->
+            <article class="dest-card">
+              <div class="dest-card-media">
+                <img src="./dest_belur.jpg" alt="Belur Chennakeshava" class="dest-card-img">
+                <div class="dest-card-overlay-badge">
+                  <span class="tag-pill tag-sandstone">UNESCO • 1 3D MODEL</span>
+                </div>
+              </div>
+              <div class="dest-card-body">
+                <span class="dest-card-tradition">Hoysala Dynasty • 12th C. CE</span>
+                <h3 class="dest-card-title">Belur <span class="dest-card-kannada">ಬೇಲೂರು</span></h3>
+                <p class="dest-card-desc">
+                  The crowning achievement of Hoysala soapstone architecture, famed for star-shaped plinths and 42 carved Madanika bracket figures.
+                </p>
+                <div class="dest-card-footer">
+                  <span>Hassan District</span>
+                  <a href="#/3d-world/belur" class="btn btn-sm btn-outline">Explore &rarr;</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Supporting Destination: Badami -->
+            <article class="dest-card">
+              <div class="dest-card-media">
+                <img src="./dest_badami.jpg" alt="Badami Cave Temples" class="dest-card-img">
+              </div>
+              <div class="dest-card-body">
+                <span class="dest-card-tradition">Badami Chalukyas • 6th–8th C. CE</span>
+                <h3 class="dest-card-title">Badami <span class="dest-card-kannada">ಬಾದಾಮಿ</span></h3>
+                <p class="dest-card-desc">
+                  Ancient Vatapi nestled between vertical red sandstone cliffs and Agastya Lake, known for four monolithic rock-cut cave shrines.
+                </p>
+                <div class="dest-card-footer">
+                  <span>Bagalkot District</span>
+                  <a href="#/3d-world/badami" class="btn btn-sm btn-outline">Explore &rarr;</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Supporting Destination: Pattadakal -->
+            <article class="dest-card">
+              <div class="dest-card-media">
+                <img src="./dest_pattadakal.jpg" alt="Pattadakal Temples" class="dest-card-img">
+                <div class="dest-card-overlay-badge">
+                  <span class="tag-pill tag-sandstone">UNESCO WORLD HERITAGE</span>
+                </div>
+              </div>
+              <div class="dest-card-body">
+                <span class="dest-card-tradition">Early Chalukyas • 7th–8th C. CE</span>
+                <h3 class="dest-card-title">Pattadakal <span class="dest-card-kannada">ಪಟ್ಟದಕಲ್ಲು</span></h3>
+                <p class="dest-card-desc">
+                  The royal coronation sanctuary on the Malaprabha River, presenting a historic synthesis of southern Dravidian and northern Nagara temple towers.
+                </p>
+                <div class="dest-card-footer">
+                  <span>Bagalkot District</span>
+                  <a href="#/3d-world/pattadakal" class="btn btn-sm btn-outline">Explore &rarr;</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Supporting Destination: Mysuru -->
+            <article class="dest-card">
+              <div class="dest-card-media">
+                <img src="./dest_mysuru.jpg" alt="Mysore Palace" class="dest-card-img">
+              </div>
+              <div class="dest-card-body">
+                <span class="dest-card-tradition">Mysore Wadiyars • 14th–20th C. CE</span>
+                <h3 class="dest-card-title">Mysuru <span class="dest-card-kannada">ಮೈಸೂರು</span></h3>
+                <p class="dest-card-desc">
+                  The City of Palaces, recognized worldwide for the Indo-Saracenic royal Amba Vilas Palace and sacred shrines atop Chamundi Hill.
+                </p>
+                <div class="dest-card-footer">
+                  <span>Mysuru District</span>
+                  <a href="#/3d-world/mysuru" class="btn btn-sm btn-outline">Explore &rarr;</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: INTRODUCE 3D HERITAGE EXPLORATION -->
+      <section class="spotlight-3d-section section-spacing">
+        <div class="container">
+          <div class="spotlight-3d-grid">
+            <div class="spotlight-copy-col">
+              <span class="tag-pill tag-sandstone">VIRTUAL ARCHITECTURAL ARCHIVE</span>
+              <h2 class="section-headline">Experience Heritage in Three Dimensions</h2>
+              <p class="spotlight-desc">
+                Explore available architectural models, examine structural details, and discover how Karnataka’s historic monuments are designed. Our Three.js viewer renders authentic stone geometries with sunlight, contact shadows, and orbit controls.
+              </p>
+
+              <div class="spotlight-features-list">
+                <div class="spotlight-feature-item">
+                  <h5>Full 3D Orbit & Pan</h5>
+                  <p>Freely rotate, zoom, and inspect stone carvings from any elevation or angle.</p>
+                </div>
+                <div class="spotlight-feature-item">
+                  <h5>Architectural Framing</h5>
+                  <p>Dynamic camera fitting based on each monument's authentic physical bounding sphere.</p>
+                </div>
+                <div class="spotlight-feature-item">
+                  <h5>Daylight Illumination</h5>
+                  <p>Warm temple courtyard lighting highlighting undercut friezes and relief panels.</p>
+                </div>
+                <div class="spotlight-feature-item">
+                  <h5>Preserved Geometry</h5>
+                  <p>Zero reconstruction or mesh degradation—rendering the exact archival model assets.</p>
+                </div>
+              </div>
+
+              <div>
+                <a href="#/3d-world" class="btn btn-terracotta">Open 3D Heritage Explorer &rarr;</a>
+              </div>
+            </div>
+
+            <!-- Spotlight Preview Card -->
+            <div class="spotlight-visual-card">
+              <img src="./chariot_thumb.jpg" alt="Stone Chariot 3D Preview" class="spotlight-preview-img">
+              <div class="spotlight-preview-overlay">
+                <div class="badge-available" style="margin-bottom: 10px;">3D MODEL AVAILABLE</div>
+                <h3 class="spotlight-preview-title">Stone Chariot of Vittala</h3>
+                <p class="spotlight-preview-meta">Hampi • Vijayanagara Empire • Granite Monolith Shrine</p>
+                <a href="#/3d-world/hampi/stone-chariot" class="btn btn-sm btn-terracotta">
+                  Inspect in 3D &rarr;
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: FUTURE PLATFORM MODULES (INTEGRATION PLACEHOLDERS) -->
+      <section class="future-modules-section section-spacing">
+        <div class="container">
+          <div class="section-header-row">
+            <div class="section-header-copy">
+              <span class="section-label">PLATFORM ROADMAP</span>
+              <h2 class="section-headline">Upcoming Platform Modules</h2>
+              <p class="section-subtitle">
+                Anvaya Nādu is designed for collaborative modular expansion. While the 3D Virtual Heritage Explorer is active today, our teammates are preparing specialized modules.
+              </p>
+            </div>
+          </div>
+
+          <div class="modules-grid">
+            <!-- Module 1: Historical & Documentary Experiences -->
+            <div class="module-card">
+              <span class="module-badge">MODULE 01 • DOCUMENTARY</span>
+              <h3 class="module-title">Historical & Documentary Timelines</h3>
+              <p class="module-desc">
+                In-depth essays, stonecraft analysis, epigraphical inscriptions, and documentary narratives chronicling 1,400 years of Deccan history.
+              </p>
+              <div class="module-status">
+                <span class="status-dot-pending"></span>
+                <span>In Development by Team • Integration Phase</span>
+              </div>
+            </div>
+
+            <!-- Module 2: AI Heritage Travel Planning -->
+            <div class="module-card">
+              <span class="module-badge">MODULE 02 • EXPEDITIONS</span>
+              <h3 class="module-title">AI Heritage Travel Planning</h3>
+              <p class="module-desc">
+                Culturally paced route roadmaps, transit scheduling, photography lighting windows, and mobility guidance for Karnataka heritage corridors.
+              </p>
+              <div class="module-status">
+                <span class="status-dot-pending"></span>
+                <span>In Development by Team • Integration Phase</span>
+              </div>
+            </div>
+
+            <!-- Module 3: Transparent Budget Planning -->
+            <div class="module-card">
+              <span class="module-badge">MODULE 03 • LOGISTICS</span>
+              <h3 class="module-title">Transparent Budget Planning</h3>
+              <p class="module-desc">
+                Comprehensive expedition cost estimation across accommodations, regional transit, ASI tickets, licensed guides, and printable itineraries.
+              </p>
+              <div class="module-status">
+                <span class="status-dot-pending"></span>
+                <span>In Development by Team • Integration Phase</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- VIEW 2: HERITAGE DESTINATION INDEX (#/explore) -->
+    <div id="view-explore" class="page-view hidden">
+      <div class="page-header-banner">
+        <div class="container">
+          <h1 class="page-banner-title">Heritage Corridors of Karnataka</h1>
+          <p class="page-banner-subtitle">
+            Discover historic destinations across Karnataka by geographical region, ruling dynasty, and architectural stone tradition.
+          </p>
+        </div>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="filter-bar-wrap">
+        <div class="container">
+          <div class="filter-bar-inner">
+            <div class="search-row">
+              <div class="search-input-wrap">
+                <svg viewBox="0 0 24 24" class="search-icon"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                <input type="text" id="explore-search-input" class="search-input" placeholder="Search destinations by name, Kannada script, or district (e.g. Hampi, ಬೇಲೂರು, Bagalkot)...">
+              </div>
+            </div>
+
+            <!-- Region Filter Pills -->
+            <div class="filter-pills-row" id="explore-region-filters">
+              <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-muted-grey); text-transform: uppercase;">Region:</span>
+              <button class="filter-pill active" data-region="all">All Regions</button>
+              <button class="filter-pill" data-region="northern">Northern Karnataka</button>
+              <button class="filter-pill" data-region="southern">Southern Karnataka</button>
+              <button class="filter-pill" data-region="central">Central Karnataka</button>
+              <button class="filter-pill" data-region="coastal">Coastal Karnataka</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Destinations Grid Container -->
+      <div class="container">
+        <div class="destinations-grid-full" id="explore-destinations-grid">
+          <!-- Rendered dynamically by app.js -->
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 3: MAIN 3D HERITAGE EXPLORER (#/3d-world) -->
+    <div id="view-3d-world" class="page-view hidden">
+      <!-- Breadcrumbs -->
+      <div class="breadcrumbs-bar">
+        <div class="container">
+          <ul class="breadcrumbs-list">
+            <li class="breadcrumb-item"><a href="#/">Home</a></li>
+            <li class="breadcrumb-separator">›</li>
+            <li class="breadcrumb-current">3D World</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="page-header-banner" style="background-color: var(--color-forest);">
+        <div class="container">
+          <h1 class="page-banner-title">Explore the Architecture of Karnataka</h1>
+          <p class="page-banner-subtitle">
+            Move from historic regions to individual monuments and examine the architectural details preserved in their digital models.
+          </p>
+        </div>
+      </div>
+
+      <!-- 3D Filter Bar -->
+      <div class="filter-bar-wrap">
+        <div class="container">
+          <div class="filter-bar-inner">
+            <div class="search-row">
+              <div class="search-input-wrap">
+                <svg viewBox="0 0 24 24" class="search-icon"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                <input type="text" id="world-search-input" class="search-input" placeholder="Search monuments by name, destination, or category...">
+              </div>
+            </div>
+
+            <!-- Availability & Category Filters -->
+            <div class="filter-pills-row" id="world-availability-filters">
+              <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-muted-grey); text-transform: uppercase;">Availability:</span>
+              <button class="filter-pill active" data-availability="all">All Monuments</button>
+              <button class="filter-pill" data-availability="available">3D Available Only (3)</button>
+              <button class="filter-pill" data-availability="coming-soon">In Archival Progress</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Monuments Grid -->
+      <div class="container">
+        <div class="monuments-grid" id="world-monuments-grid">
+          <!-- Rendered dynamically by app.js -->
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 4: DESTINATION-SPECIFIC PAGE (#/3d-world/:destination) -->
+    <div id="view-destination" class="page-view hidden">
+      <!-- Breadcrumbs -->
+      <div class="breadcrumbs-bar">
+        <div class="container">
+          <ul class="breadcrumbs-list" id="dest-breadcrumbs">
+            <li class="breadcrumb-item"><a href="#/">Home</a></li>
+            <li class="breadcrumb-separator">›</li>
+            <li class="breadcrumb-item"><a href="#/3d-world">3D World</a></li>
+            <li class="breadcrumb-separator">›</li>
+            <li class="breadcrumb-current" id="dest-breadcrumb-name">Destination</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Destination Hero -->
+      <div class="dest-page-hero">
+        <div class="container">
+          <div class="dest-page-hero-grid">
+            <div>
+              <span class="tag-pill tag-sandstone" id="dest-page-tradition">Tradition</span>
+              <h1 class="page-banner-title" style="margin-top: 14px;" id="dest-page-title">
+                Destination Name <span id="dest-page-kannada" style="font-family: var(--font-kannada); font-weight: normal; color: var(--color-sandstone);"></span>
+              </h1>
+              <p class="page-banner-subtitle" id="dest-page-desc">
+                Destination factual description.
+              </p>
+              <div style="margin-top: 20px; font-size: 0.88rem; color: var(--color-sandstone);">
+                <strong id="dest-page-district">District</strong> • <span id="dest-page-stone">Stone Medium</span>
+              </div>
+            </div>
+            <div class="dest-page-hero-img-wrap">
+              <img id="dest-page-img" src="./dest_hampi.jpg" alt="Destination View" class="dest-page-hero-img">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Destination Monuments Section -->
+      <div class="container section-spacing" style="padding-top: 48px;">
+        <div class="section-header-row">
+          <div>
+            <h2 class="section-headline">Monuments & Structural Ensembles</h2>
+            <p class="section-subtitle">Select an available monument to launch the interactive 3D architectural viewer.</p>
+          </div>
+          <a href="#/3d-world" class="btn btn-outline btn-sm">&larr; Back to 3D World</a>
+        </div>
+
+        <div class="monuments-grid" id="dest-monuments-grid">
+          <!-- Rendered dynamically by app.js -->
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 5: INDIVIDUAL MONUMENT & 3D MODEL PAGE (#/3d-world/:destination/:monument) -->
+    <div id="view-monument" class="page-view hidden">
+      <!-- Breadcrumbs -->
+      <div class="breadcrumbs-bar">
+        <div class="container">
+          <ul class="breadcrumbs-list" id="monument-breadcrumbs">
+            <li class="breadcrumb-item"><a href="#/">Home</a></li>
+            <li class="breadcrumb-separator">›</li>
+            <li class="breadcrumb-item"><a href="#/3d-world">3D World</a></li>
+            <li class="breadcrumb-separator">›</li>
+            <li class="breadcrumb-item" id="monument-breadcrumb-dest"><a href="#/3d-world/hampi">Hampi</a></li>
+            <li class="breadcrumb-separator">›</li>
+            <li class="breadcrumb-current" id="monument-breadcrumb-name">Stone Chariot</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container">
+        <!-- Monument Page Header -->
+        <div class="monument-page-header">
+          <div class="monument-page-titles">
+            <span class="tag-pill tag-terracotta" id="monument-page-category">Temples & Shrines</span>
+            <h1 class="monument-page-name" id="monument-page-title" style="margin-top: 8px;">
+              Monument Name <span id="monument-page-kannada" class="monument-page-kannada"></span>
+            </h1>
+            <p class="monument-page-meta" id="monument-page-meta">
+              Hampi • Vijayanagara Empire • 16th Century CE
+            </p>
+          </div>
+
+          <!-- Functional Back Button -->
+          <button id="monument-back-btn" class="btn btn-stone">
+            &larr; Back
+          </button>
+        </div>
+
+        <!-- 3D Viewer Container (Active when 3D model is available) -->
+        <div id="monument-3d-container" class="viewer-3d-card">
+          <div class="viewport-canvas-wrap" id="canvas-viewport">
+            <canvas id="webgl-canvas"></canvas>
+
+            <!-- Floating Controls Toolbar -->
+            <div class="viewer-floating-toolbar">
+              <button id="btn-reset-view" class="ctrl-btn" title="Reset Camera View (R)">
+                <svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
+                <span>Reset View</span>
+              </button>
+              <button id="btn-auto-rotate" class="ctrl-btn" title="Toggle Auto Rotation (Space)">
+                <svg viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>
+                <span>Auto Rotate</span>
+              </button>
+              <button id="btn-fullscreen" class="ctrl-btn" title="Toggle Fullscreen">
+                <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                <span>Fullscreen</span>
+              </button>
+            </div>
+
+            <!-- Interaction Hints -->
+            <div class="viewer-hint-label">
+              <span>Orbit: Left Drag</span> • <span>Pan: Right Drag</span> • <span>Zoom: Wheel</span>
+            </div>
+
+            <!-- Loading Spinner Overlay -->
+            <div id="viewer-loading-overlay" class="viewer-overlay hidden">
+              <div class="viewer-spinner"></div>
+              <div id="viewer-loading-msg" class="viewer-loading-text">Loading 3D Monument...</div>
+            </div>
+
+            <!-- Error Overlay with Retry -->
+            <div id="viewer-error-overlay" class="viewer-overlay hidden">
+              <div class="viewer-error-box">
+                <h4 class="viewer-error-title">Model Loading Error</h4>
+                <p id="viewer-error-msg" class="viewer-error-desc">Could not parse the 3D asset file.</p>
+                <button id="viewer-retry-btn" class="btn btn-terracotta btn-sm">Retry Loading</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Architectural Anatomy Details -->
+          <div class="monument-anatomy-drawer">
+            <div class="anatomy-header">
+              <h3 class="anatomy-title">Architectural Anatomy & Structural Highlights</h3>
+              <span class="badge-available">AUTHENTIC 3D SCAN</span>
+            </div>
+            <p id="monument-anatomy-desc" style="font-size: 0.95rem; color: #3f443b; line-height: 1.65; margin-bottom: 24px;">
+              Monument description.
+            </p>
+            <div class="anatomy-points-grid" id="monument-anatomy-points">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Fallback View when 3D model is not yet available -->
+        <div id="monument-unavailable-container" class="unavailable-model-card hidden">
+          <div class="unavailable-icon">&#9651;</div>
+          <h2 class="unavailable-title">3D Model in Archival Preparation</h2>
+          <p class="unavailable-desc" id="monument-unavailable-desc">
+            The architectural 3D model for this monument is currently being scanned and processed. You can review its photographic details and historical significance above.
+          </p>
+          <div style="margin-top: 12px;">
+            <button id="unavailable-back-btn" class="btn btn-terracotta">
+              &larr; Return to Destination
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 6: FUTURE TEAMMATE MODULE INTEGRATION VIEW (#/modules/:name) -->
+    <div id="view-module" class="page-view hidden">
+      <div class="container module-integration-container">
+        <div class="integration-box">
+          <span class="integration-status-tag">TEAMMATE MODULE INTEGRATION POINT</span>
+          <h1 class="integration-title" id="module-integration-title">Module Title</h1>
+          <div class="integration-divider"></div>
+          <p class="integration-desc" id="module-integration-desc">
+            This module is reserved for upcoming team platform features. In accordance with the system scope, the 3D Virtual Heritage Explorer and Heritage Index are active.
+          </p>
+          <div style="display: flex; gap: 14px; margin-top: 12px;">
+            <a href="#/3d-world" class="btn btn-terracotta">Explore 3D World &rarr;</a>
+            <a href="#/" class="btn btn-outline">Return to Homepage</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- =========================================================================
+       3. EXPANSION / INFO MODAL FOR COMING SOON MONUMENTS
+       ========================================================================= -->
+  <div id="info-modal" class="viewer-overlay hidden" style="position: fixed; z-index: 2000; background-color: rgba(24, 43, 36, 0.7);">
+    <div class="viewer-error-box" style="border-color: var(--color-gold); max-width: 500px; text-align: left;">
+      <span class="tag-pill tag-sandstone" style="margin-bottom: 12px;">ARCHITECTURAL ARCHIVE EXPANSION</span>
+      <h3 class="viewer-error-title" id="info-modal-title" style="color: var(--color-heritage-green);">3D Model in Preparation</h3>
+      <p id="info-modal-text" class="viewer-error-desc" style="line-height: 1.6; margin-bottom: 24px;">
+        To explore this structure in 3D, add its corresponding GLB file to the project folder and map it in <code>catalog.js</code>.
+      </p>
+      <div style="display: flex; justify-content: flex-end; gap: 12px;">
+        <button id="info-modal-close-btn" class="btn btn-stone btn-sm">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       4. GLOBAL FOOTER
+       ========================================================================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div class="footer-brand-col">
+          <div class="footer-brand-title">Anvaya Nādu</div>
+          <div class="footer-brand-sub">ಅನ್ವಯ ನಾಡು • Karnataka Heritage</div>
+          <p class="footer-desc">
+            A digital cultural archive and architectural exploration platform dedicated to the living stonecraft, dynasties, and monuments of Karnataka.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Exploration</h4>
+          <ul class="footer-links-list">
+            <li><a href="#/">Home</a></li>
+            <li><a href="#/explore">Explore Karnataka</a></li>
+            <li><a href="#/3d-world">3D Heritage World</a></li>
+            <li><a href="#/3d-world/hampi">Hampi Ensembles</a></li>
+            <li><a href="#/3d-world/belur">Belur Soapstone</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Active 3D Models</h4>
+          <ul class="footer-links-list">
+            <li><a href="#/3d-world/hampi/stone-chariot">Stone Chariot of Vittala</a></li>
+            <li><a href="#/3d-world/belur/chennakeshava-temple">Chennakeshava Temple</a></li>
+            <li><a href="#/3d-world/hampi/lakshmi-narasimha">Monolithic Lakshmi Narasimha</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Upcoming Modules</h4>
+          <ul class="footer-links-list">
+            <li><a href="#/modules/stories">Heritage Stories (Documentary)</a></li>
+            <li><a href="#/modules/roadmap">AI Heritage Travel Roadmap</a></li>
+            <li><a href="#/modules/budget">Expedition Budget Planner</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-row">
+        <span>&copy; 2026 Anvaya Nādu (ಅನ್ವಯ ನಾಡು). Cultural Heritage Exploration Platform.</span>
+        <span>Karnataka Architectural Heritage Archive</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Script (ES Module) -->
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
